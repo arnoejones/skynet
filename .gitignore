@@ -1,4 +1,5 @@
 .idea
-app/__pychache_
+__pycache
+app/__pycache__
 .venv
 _
