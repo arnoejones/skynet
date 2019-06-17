@@ -1,11 +1,27 @@
+import dash
 import dash_html_components as html
+import dash_core_components as dcc
 import dash_table
 
 from app.config import Config
 
+colors = {
+    'background': '#006699',
+    'text': '#f2f2f2'
+}
+
+
 
 def server_layout():
-    layout = html.Div([
+    layout = html.Div(style={'color': 'red'}, children = [
+        html.Div([
+            html.Label("Skynet: ", style={'color': 'green'}),
+            html.A("Home Page   ", href='/', style={'color': 'green'}),
+            html.A("Radio Page   ", href='/radio',style={'color': 'green'})
+    ]),
+        # content will be rendered in this element
+        html.Div(id='page-content'),
+
         dash_table.DataTable(
             id='skynet-datatable',
 
@@ -48,11 +64,18 @@ def server_layout():
                 'textAlign': 'left'
             },
             style_header={
-                'backgroundColor': 'black',
+                'backgroundColor': 'green',
                 'fontWeight': 'bold'
             },
         ),
-        html.Div(id='datatable-interactivity-container')
+        html.Div(id='datatable-interactivity-container'),
+        html.Div(id='footer-div-id',
+                 children=(html.H3("I'm at the bottom!",
+                                   style={
+                     'textAlign': 'center',
+                     'color':colors['text'],
+                     })),
+        )
         ]
     )
     return layout

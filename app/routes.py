@@ -2,7 +2,8 @@ import dash
 import flask
 from flask import render_template
 from werkzeug.utils import redirect
-
+import dash_core_components as dcc
+import dash_html_components as html
 from app import flask_server
 from app import layout
 from app import sqlconnect
@@ -11,7 +12,6 @@ from app.forms import RadioFormClass
 
 dash_app = dash.Dash(__name__, server =flask_server, url_base_pathname='/dash/')
 dash_app.layout = layout.server_layout
-
 
 @flask_server.route('/', methods=['GET','POST'])
 @flask_server.route('/home')

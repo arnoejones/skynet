@@ -7,7 +7,7 @@ from app.config import Config
 from app.sqlconnect import getData
 
 print(dcc.__version__) # 0.6.0 or above is required
-
+# external_stylesheets = '../assets/skynet.css'
 flask_server = Flask(__name__)
 flask_server.config.from_object(Config)
 flask_server.config.update(dict(
