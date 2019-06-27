@@ -1,19 +1,32 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block header %}
+{%endblock%}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
-<h1>This is the home page.  This page should be the intro and help page.  </h1>
-<h1>User will click the Query link for the query page.</h1>
-<a href="/dash">Go to the table!</a>
-</body>
-</html>
+{%block body%}
 
+<div class="bgimg-2">
+  <div style="text-align: left", class="caption">
+        <span class="span_text_bottom">What is Skynet</span>
+            <p>
+                Here is some stuff I want to talk about.  You have come to the best place in the world!  Be here, stay here!
+            </p>
+            <ul>
+                <li>Here is a thing</li>
+                <li>This is another thing</li>
+                <li>I really want to talk about that thing!</li>
+                <li>Oh, and that thing, too!</li>
+            </ul>
+
+    <span class="span_text_bottom">Contacts:</span>
+      <ul>
+          <li>The Boss of all Things: <strong>Jonathan Turner</strong></li>
+          <li>The Gatherer of all Data: <strong>Frank Conway</strong></li>
+          <li>The Presenter of all Data: <strong>Arno Jones</strong></li>
+      </ul>
+
+  </div>
+</div >
 {%endblock %}
 
 

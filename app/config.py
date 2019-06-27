@@ -14,3 +14,4 @@ class Config(object):
     column_names_list = list(df.columns.values)
     column_names_count = len(column_names_list)
     radio_query = []
+    csv_table = ''

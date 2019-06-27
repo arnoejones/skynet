@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h4>Skynet Query Selection</h4>
-<div id="mydiv_id", class="mydiv_class">
+{% block body %}
+
+<div id="radio_div_id", class="radio_div_class">
+    <h4 id=radio-div-title>Skynet Query Selection</h4>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
     <h3>{{ form.radio }}</h3>

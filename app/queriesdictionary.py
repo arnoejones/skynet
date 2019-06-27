@@ -14,8 +14,24 @@ class QueriesDictionary():
             (
             "SELECT GameName AS '# of Games Tested', COUNT(GameName) AS 'Games Tested Amount' FROM GameLogs WHERE GameName <> '' GROUP BY GameName ORDER BY 'Games Tested Amount' DESC",
             "Number of Times a Game's Been Tested"),
+
             (
-            "SELECT top 5 count(GameName) as 'Game Name Count with G2S Enabled', GameName as 'Game Name Enabled' from GameLogs where GameName <> '' and G2S like '%G2STrue%' Group by GameName Order By 'Game Name Count with G2S Enabled' DESC",
-            "Last 5 Days Tests Were Run"),
+                "SELECT top 5 count(GameName) as 'Game Name Count with G2S Enabled', GameName as 'Game Name Enabled' from GameLogs where GameName <> '' and G2S like '%G2STrue%' Group by GameName Order By 'Game Name Count with G2S Enabled' DESC",
+                "Last 5 Days Tests Were Run"
+            ),
+
+
+            (
+                "SELECT GameName AS 'Game Name', COUNT(GameName) AS 'Game Name Count with SAS Enabled' FROM GameLogs WHERE GameName <> '' AND SAS LIKE '%SASTrue%' Group by GameName ORDER BY 'Game Name Count with SAS Enabled' DESC; ",
+                "Count of Games tested with SAS enabled"
+            ),
+
+            (
+                "SELECT COUNT(DISTINCT AI) AS 'Count of AIs', AI, PushNumber AS 'Push Nunber' FROM GameLogs  WHERE AI LIKE '%M0001' GROUP BY PushNumber, AI ORDER BY PushNumber DESC",
+                "M-Series Push numbers tested"
+            )
+
+
+
         ]
         return queries

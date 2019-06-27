@@ -1,0 +1,103 @@
+a{
+    background-color: #009ADA;
+    box-shadow: 0 3px 0 #006FBA;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+a:hover{
+    text-decoration: underline;
+    background-color: #EF6918;
+    cursor: pointer;
+}
+a:active{
+    color: black;
+    box-shadow: none;
+    top:5px;
+}
+a:visited{
+    color: #ccc;
+}
+
+.container{
+    background-image: url("content.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 180px;
+    max-width: 100%;
+}
+
+.radio_div_class {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+}
+.radio_div_class::after{
+  /*content: "";*/
+  background: url("jeep.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+.heading1{
+    font-family: 'Trebuchet MS', sans-serif;
+            font-size: 55px;
+            text-align: center;
+            color: white;
+            text-shadow: -3px -3px 10px;
+}
+.heading2{
+font-family: 'Trebuchet MS', sans-serif;
+            font-size: 55px;
+            text-align: center;
+            color: white;
+            text-shadow: -5px -5px 10px white;
+}
+/*h4{
+    width: 100px;
+    font-family: Helvetica;
+}
+h4::first-letter{
+    font-size: 50px;
+    font-style: italic;
+    color: white;
+}*/
+
+
+.menu-div{
+    height: 36px;
+}
+.span_text_top{
+    align=center;
+    font-size: 40px;
+    color: white;
+    height: 50%;
+}
+.span_text_bottom{
+    align=left;
+    font-size: 20px;
+    color: green;
+    height: 50%;
+}
+#radio_div_id{
+    color: blue;
+}
+.main_home_caption{
+    color: black;
+}
+
+#radio-div-title{
+   color: royal_blue;
+   font-family:verdana;
+   font-size: 25;
+}
