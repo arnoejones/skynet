@@ -6,8 +6,8 @@ from sqlalchemy import create_engine
 # Query the SQL Server database and put the results into a Pandas dataframe. This will
 # allow easier manipulation and graphics displays.
 def getData(query):
-    ServerName = 'rnop-ctpa02'
-    Database = 'FTA'
+    ServerName = 'your server'
+    Database = 'your db'
     Driver = "driver=SQL Server Native Client 11.0"
 
     engine = create_engine('mssql+pyodbc://' + ServerName + '/' + Database + "?" + Driver)
