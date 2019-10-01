@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block body %}
-
+<div class="jumbotron">
 <div id="radio_div_id", class="radio_div_class">
-    <h4 id=radio-div-title>Skynet Query Selection</h4>
+    <span id=radio-div-title> Skynet Query Selection</span>
+    <p>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
-    <h3>{{ form.radio }}</h3>
-    <center><h4>{{ form.submit }}</h4></center>
+    <h6>{{ form.radio }}</h6>
+    <center><h6>{{ form.submit }}</h6></center>
 </form>
-</div>
+    </p>
+</div></div>
 {%endblock %}

@@ -1,25 +1,44 @@
 import pandas.io.sql as psql
 from sqlalchemy import create_engine
 
-
 # Skynet production db
 # Query the SQL Server database and put the results into a Pandas dataframe. This will
 # allow easier manipulation and graphics displays.
+
 def getData(query):
-    ServerName = 'your server'
-    Database = 'your db'
+    # ServerName = 'rnop-ctpa02'
+    # Database = 'FTA'
+    # Driver = "driver=SQL Server Native Client 11.0"
+    #ServerName = 'Godzilla\ArnoSqlServer'
+    ServerName = 'USNVR-W1005006\SKYNETLOCAL'
+    Database = 'FTA'
     Driver = "driver=SQL Server Native Client 11.0"
 
     engine = create_engine('mssql+pyodbc://' + ServerName + '/' + Database + "?" + Driver)
-    if query is not None:
-        print("THE QUERY TO SQLCONNECT IS {}".format(query))
 
-        df = psql.read_sql(query, engine)
+    print("THE QUERY TO SQLCONNECT IS {}".format(query))
+    if query is None:
+        query = "SELECT count(DISTINCT LogTimeStamp) AS 'Total Log Entries' FROM EgmStatus"
 
-        return df
-    else:  # upon initialization, app won't load because there aren't any default values.  This is for init only.
-        print("THE QUERY TO SQLCONNECT IS {}".format(query))
-        query = "select top 5 count(GameName) as 'Game Name Count with G2S Enabled', GameName as 'Game Name Enabled' from GameLogs where GameName <> '' and G2S like '%G2STrue%' Group by GameName Order By 'Game Name Count with G2S Enabled' DESC"
-        df = psql.read_sql(query, engine)
+    df = psql.read_sql(query, engine)
+    fill_qd(query)
+    return df
 
-        return df
+
+qd = ['']
+
+def fill_qd(z):
+    qd[0] = z
+    print('**** qd: ', qd)
+
+def query_desc():
+    return qd
+
+qraw = ['']
+
+def fill_qraw(z):
+    qraw[0] = z
+    print('**** qraw: ', qraw)
+
+def query_raw():
+    return qraw

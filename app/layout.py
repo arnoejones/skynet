@@ -1,85 +1,56 @@
-import dash
 import dash_html_components as html
-import dash_core_components as dcc
 import dash_table
 import dash_bootstrap_components as dbc
 from app.config import Config
 
-colors = {
-    'background': '#006699',
-    'text': '#f2f2f2'
-}
+
 def nav_bar():
     navbar = dbc.NavbarSimple(
         children=[
-            dbc.NavItem(dbc.NavLink("Link", href="#")),
+            dbc.NavItem(dbc.NavLink("Home", href="http://10.213.81.6:5000/home")),
+            dbc.NavItem(dbc.NavLink("Query", href="http://10.213.81.6:5000/radio")),
+            dbc.NavItem(dbc.NavLink("Custom", href="http://10.213.81.6:5000/custom")),
+            # dbc.NavItem(dbc.NavLink("Page 1", href="#")),
             dbc.DropdownMenu(
+                children=[
+                    dbc.DropdownMenuItem("Technical Stuff", header=True),
+                    dbc.DropdownMenuItem("Raw SQL Query", href="http://10.213.81.6:5000/raw_sql_query"),
+                    dbc.DropdownMenuItem("Query Description", href="http://10.213.81.6:5000/sql_description"),
+                ],
                 nav=True,
                 in_navbar=True,
-                label="Menu",
-                children=[
-                    dbc.DropdownMenuItem("Entry 1"),
-                    dbc.DropdownMenuItem("Entry 2"),
-                    dbc.DropdownMenuItem(divider=True),
-                    dbc.DropdownMenuItem("Entry 3"),
-                ],
+                label="More",
             ),
         ],
-        brand="Demo",
-        brand_href="#",
-        sticky="top",
+
+        brand="Skynet Query Results",
+        brand_href="http://10.213.81.6:5000//home",
+        sticky="right",
     )
     return navbar
 
+
 def server_layout():
-    layout = html.Div(id= "table-header-div", children = [
+    layout = html.Div(id="table-header-div", children=[
         html.Div([
-            html.Label("Skynet Table: ", style={'color':'blue', 'fontSize':22},id="skynet-label"),
-            html.A("Home",style={'color':'blue',
-                                     'fontSize':20,
-                                     'backgroundColor':'blue',
-                                     'color':'white',
-                                     'boxShadow':'0 3px 0 #006FBA',
-                                     'padding':'5px 5px 5px 5px'},
-                id="home-page-label", href='/', target='_blank'
-            ),
-            html.A("Query",style={'color':'blue',
-                                     'fontSize':20,
-                                     'backgroundColor':'#EF6918',
-                                     'color':'white',
-                                     'boxShadow':'0 3px 0 #006FBA',
-                                     'padding':'5px 5px 5px 5px'},
-                id="radio-page-label", href='/radio', target='_blank')
-    ]),
+            nav_bar(),
+        ]),
+
         # content will be rendered in this element
         html.Div(id='page-content'),
 
         dash_table.DataTable(
             id='skynet-datatable',
-
             columns=[{"name": i, "id": i, "deletable": False} for i in Config.df.columns],
-
             data=Config.df.to_dict("rows"),
-            editable=False,
-            filtering=False,
-            sorting=True,
-            sorting_type="multi",
-            row_selectable="multi",
-            row_deletable=True,
-            selected_rows=[],
-            pagination_mode="fe",
-            pagination_settings={
-                "displayed_pages": 1,
-                "current_page": 0,
-                "page_size": 45,
-            },
-            navigation="page",
 
-            n_fixed_rows=1, #keep the header on the screen, do not let it scroll.
-            # style_table={'overflowX': 'scroll'},
-            style_table={'backgroundColor': 'rgb(50, 50, 50)',
-                         'maxHeight':'30',
-                         'overflowY':'scroll'},
+
+            sort_action='native',
+            sort_mode='multi',
+            page_action="native",
+            page_current=0,
+            # page_size=40,
+            fixed_rows={'headers':True, 'data':0},
 
             style_cell_conditional=[
                 {
@@ -93,23 +64,31 @@ def server_layout():
                 'font-weight': 'bold',
                 'backgroundColor': '#33bbff',
                 'color': 'white',
-                #'minWidth': '0px', 'maxWidth': '40px', this messes up the header
+                'minWidth': '0px', 'maxWidth': '40px',
                 'whiteSpace': 'normal',
                 'textOverflow': 'ellipsis',
-                'textAlign': 'left'
+                'textAlign': 'left',
             },
-            style_header={
-                'backgroundColor': '#006699',
-                'fontWeight': 'bold'
-            },
+            # css=[{
+                # 'selector': '.dash-cell div.dash-cell-value',
+                # 'rule': 'display: inline; white-space: inherit; overflow: inherit; text-overflow: inherit;'
+            # }],
+
         ),
-        html.Div(id='datatable-interactivity-container'),
 
         html.Div(children=
-                 [html.A("download excel", href="/download_excel/")])
+                 [html.Br(),
+                  html.A(html.Button(children='Download table as xlsx',
+                                     id='table_download_button',
+                                     style={'color': 'blue'}),
+                                     href="/download_excel/", ),
 
-    ,
-
-
+                  html.P(" (Large files can take a few seconds)",
+                         style={
+                             'color': 'green'
+                         })
+                  ])
+        ,
+        html.Div(id='datatable-interactivity-container'),
     ])
     return layout

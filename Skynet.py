@@ -3,4 +3,4 @@
 from app import flask_server
 
 if __name__ == '__main__':
-    flask_server.run(debug=True, host='0.0.0.0')  # lets me run http://10.213.81.6:8050/
+    flask_server.run(debug=True, host='0.0.0.0' )  # lets me run http://10.213.81.6:8050/
